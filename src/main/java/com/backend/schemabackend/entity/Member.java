@@ -1,15 +1,18 @@
 package com.backend.schemabackend.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+@Builder
 @Getter
 @Setter
+@AllArgsConstructor
+@ToString
+@Entity
 public class Member {
     @Id
     @GeneratedValue
@@ -21,4 +24,15 @@ public class Member {
     private String grade;
     private String class1;
     private String role;
+
+    public Member() {
+    }
+    public Member(String userid, String password, String name, String school, String grade, String class1) {
+        this.userid = userid;
+        this.password = password;
+        this.name = name;
+        this.school = school;
+        this.grade = grade;
+        this.class1 = class1;
+    }
 }
