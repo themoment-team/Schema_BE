@@ -1,5 +1,6 @@
 package com.backend.schemabackend.entity;
 
+import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -13,16 +14,24 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @ToString
 @Entity
+@Data
 public class Member {
     @Id
     @GeneratedValue
     private Long id;
+
     private String userid;
+
     private String password;
+
     private String name;
+
     private String school;
+
     private String grade;
+
     private String class1;
+
     private String role;
 
     public Member() {

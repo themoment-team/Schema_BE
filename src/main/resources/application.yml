@@ -5,6 +5,9 @@ spring:
     username: root
     password: jwjw0185**
 
+  jwt:
+    secret: jwtsecretkey
+
   jpa:
     hibernate:
       #옵션 create, update, none, create-drop, validate 있음

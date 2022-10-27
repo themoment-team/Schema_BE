@@ -1,11 +1,14 @@
 package com.backend.schemabackend.auth;
 
+import com.backend.schemabackend.entity.Member;
 import com.backend.schemabackend.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -22,9 +25,24 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.Arrays;
 
 @EnableWebSecurity
+@Configuration
 @RequiredArgsConstructor
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private final MemberService exService;
+
+    @Autowired
+    private MemberService memberService;
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth)throws Exception{
+        auth.userDetailsService(memberService).passwordEncoder(encodePWD());
+    }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 
     /**
      * 규칙 설정
@@ -33,15 +51,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http.csrf().disable()
+                .authorizeRequests()
                 .antMatchers("/pages/main").hasRole("USER")
-                .antMatchers("/pages/signUp").anonymous()
+                .antMatchers("/pages/SignUp").anonymous()
                 .and()
                 .formLogin()
-                .loginPage("/pages/SignIn")
-                .loginProcessingUrl("/loginProc")
-                .usernameParameter("id")
-                .passwordParameter("pw")
+                //.loginPage("pages/SignIn")
+                .loginProcessingUrl("pages/SignIn")
+                .usernameParameter("userid")
+                .passwordParameter("password")
                 .defaultSuccessUrl("/pages/main", true)
                 .permitAll()
                 .and()
@@ -49,16 +68,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logoutProc"));
         http.logout() // 로그아웃 기능
                 .logoutUrl("/logout") // 로그아웃 처리 URL, default: /logout, 원칙적으로 post 방식만 지원
-                .logoutSuccessUrl("/login") // 로그아웃 성공 후 이동페이지
+                .logoutSuccessUrl("/pages/SignIn") // 로그아웃 성공 후 이동페이지
                 .deleteCookies("JSESSIONID", "remember-me");
         http.csrf().disable();
-        http.headers().frameOptions().disable();
-        http.authorizeRequests()
-                .antMatchers("/h2-console/**").permitAll();
     }
 
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(exService).passwordEncoder(new BCryptPasswordEncoder());
+    @Bean
+    public BCryptPasswordEncoder encodePWD(){
+        return new BCryptPasswordEncoder();
     }
 }
