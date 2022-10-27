@@ -34,18 +34,15 @@ public class Member{
 
     private String role;
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public Member() {
     }
     public Member(String userid, String password, String name, String school, String grade, String class1) {
         this.userid = userid;
         this.password = password;
-        this.name = name;
-        this.school = school;
-        this.grade = grade;
-        this.class1 = class1;
-    }
-
-    public void modify(String name, String school, String grade, String class1) {
         this.name = name;
         this.school = school;
         this.grade = grade;

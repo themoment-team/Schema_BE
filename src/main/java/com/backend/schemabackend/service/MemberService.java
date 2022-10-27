@@ -1,12 +1,15 @@
 package com.backend.schemabackend.service;
 
 import com.backend.schemabackend.auth.MyMemberDetail;
+import com.backend.schemabackend.auth.SecurityConfig;
 import com.backend.schemabackend.entity.Member;
 import com.backend.schemabackend.repository.BoardRepository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -63,6 +66,5 @@ public class MemberService implements UserDetailsService {
                 });
         return new MyMemberDetail(principal);
     }
-
 
 }
