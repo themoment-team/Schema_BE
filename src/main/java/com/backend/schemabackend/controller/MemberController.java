@@ -1,11 +1,11 @@
 package com.backend.schemabackend.controller;
 
 
+
 import com.backend.schemabackend.auth.MyMemberDetail;
 import com.backend.schemabackend.dto.ResponseDto;
 import com.backend.schemabackend.entity.Member;
 import com.backend.schemabackend.repository.BoardRepository;
-import com.backend.schemabackend.repository.MemberRepository;
 import com.backend.schemabackend.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

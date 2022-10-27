@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @ToString
 @Entity
 @Data
-public class Member extends TimeEntity{
+public class Member{
     @Id
     @GeneratedValue
     private Long id;

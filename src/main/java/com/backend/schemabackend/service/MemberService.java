@@ -3,7 +3,7 @@ package com.backend.schemabackend.service;
 import com.backend.schemabackend.auth.MyMemberDetail;
 import com.backend.schemabackend.entity.Member;
 import com.backend.schemabackend.repository.BoardRepository;
-import com.backend.schemabackend.repository.MemberRepository;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +25,6 @@ import java.util.Optional;
 public class MemberService implements UserDetailsService {
     @Autowired
     private final BoardRepository boardRepository;
-
-    @Autowired
-    private final MemberRepository repository;
 
     @Transactional
     public void joinMember(Member member){
