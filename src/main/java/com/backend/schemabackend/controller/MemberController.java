@@ -44,14 +44,15 @@ public class MemberController {
         this.boardRep = boardRep;
     }
 
-    @PostMapping("/pages/SignUp")
+    @PostMapping("/signupInfo")
     public ResponseDto<Integer> save(@RequestBody Member member){
         System.out.println("MemberController : save 함수 호출됨");
         memberService.SignUp(member);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
-    @PostMapping("/logininfo")
+
+    @PostMapping("/loginInfo")
     public ResponseDto<Integer> login(@RequestBody Member member, HttpSession session){
         System.out.println("MemberController : login 함수 호출됨");
         Member principal = memberService.SignIn(member);
@@ -74,12 +75,10 @@ public class MemberController {
         return boardRep.findById(id);
     }
 
-    @PutMapping(value = "/{id}")
-    public Member update(@PathVariable Long id, @RequestParam String userid, @RequestParam String password, @RequestParam String name, @RequestParam String school, @RequestParam String grade, @RequestParam String class1) {
-        Optional<Member> board = boardRep.findById(id);
-        board.get().setUserid(userid);
-        board.get().setPassword(password);
-        return boardRep.save(board.get());
+    @PutMapping("/update")
+    public ResponseDto<Integer> update(@RequestBody Member member){
+        memberService.update(member);
+        return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
     }
 
     @DeleteMapping

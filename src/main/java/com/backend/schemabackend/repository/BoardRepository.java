@@ -13,4 +13,6 @@ public interface BoardRepository extends JpaRepository<Member, Long> {
     boolean existsByPassword(String password);
 
     Optional<Member> findByUserid(String userid);
+
+    Member findByUpdateInfo(String username, String school, String grade, String class1);
 }
