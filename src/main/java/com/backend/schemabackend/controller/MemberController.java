@@ -15,8 +15,11 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +37,8 @@ import java.util.Optional;
 @Slf4j
 public class MemberController {
 
+    @Autowired
+    private AuthenticationManager authenticationManager;
     @Autowired
     private MemberService memberService;
     @Autowired
@@ -73,12 +78,6 @@ public class MemberController {
     @GetMapping(value = "/{id}")
     public Optional<Member> findOne(@PathVariable Long id) {
         return boardRep.findById(id);
-    }
-
-    @PutMapping("/update")
-    public ResponseDto<Integer> update(@RequestBody Member member){
-        memberService.update(member);
-        return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
     }
 
     @DeleteMapping

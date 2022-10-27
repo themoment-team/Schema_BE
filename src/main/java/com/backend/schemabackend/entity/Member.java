@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @ToString
 @Entity
 @Data
-public class Member {
+public class Member extends TimeEntity{
     @Id
     @GeneratedValue
     private Long id;
@@ -39,6 +39,13 @@ public class Member {
     public Member(String userid, String password, String name, String school, String grade, String class1) {
         this.userid = userid;
         this.password = password;
+        this.name = name;
+        this.school = school;
+        this.grade = grade;
+        this.class1 = class1;
+    }
+
+    public void modify(String name, String school, String grade, String class1) {
         this.name = name;
         this.school = school;
         this.grade = grade;

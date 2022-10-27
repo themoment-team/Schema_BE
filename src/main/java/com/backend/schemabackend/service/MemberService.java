@@ -67,21 +67,5 @@ public class MemberService implements UserDetailsService {
         return new MyMemberDetail(principal);
     }
 
-    public void update(Member member){
-        Member persistance = boardRepository.findById(member.getId()).orElseThrow(()->{
-            return new IllegalArgumentException("회원 찾기 실패");
-        });
-
-        String rawName = member.getName();
-        String rawSchool = member.getSchool();
-        String rawGrade = member.getGrade();
-        String rawClass1 = member.getClass1();
-
-        persistance.setName(rawName);
-        persistance.setSchool(rawSchool);
-        persistance.setGrade(rawGrade);
-        persistance.setClass1(rawClass1);
-
-    }
 
 }
