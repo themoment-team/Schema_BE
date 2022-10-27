@@ -36,9 +36,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Slf4j
 public class MemberController {
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
     @Autowired
     private MemberService memberService;
     @Autowired
@@ -79,6 +76,7 @@ public class MemberController {
     public Optional<Member> findOne(@PathVariable Long id) {
         return boardRep.findById(id);
     }
+
 
     @DeleteMapping
     public void delete(@RequestParam Long id) {

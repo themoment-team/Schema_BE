@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://schema-db.crturo38jtgq.ap-northeast-2.rds.amazonaws.com:8080/schema_db?serverTimezone=UTC&characterEncoding=UTF-8
-    username: schema_master
-    password: schema123!
+    url: jdbc:mysql://127.0.0.1/user?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
+    password: jwjw0185**
 
   jwt:
     secret: jwtsecretkey
