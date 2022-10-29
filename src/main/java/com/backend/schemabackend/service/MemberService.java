@@ -6,7 +6,6 @@ import com.backend.schemabackend.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,7 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
+import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @Service
@@ -63,6 +62,10 @@ public class MemberService implements UserDetailsService {
     @Transactional
     public Optional<Member> checkUseridDuplicate(Member member){
         return boardRepository.findByUserid(member.getUserid());
+    }
+    @Transactional
+    public void logout(HttpSession session){
+        session.invalidate();
     }
 
 }

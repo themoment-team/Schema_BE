@@ -12,8 +12,5 @@ public interface BoardRepository extends JpaRepository<Member, Long> {
 
     Member findByUseridAndPassword(String userid, String password);
 
-    Member findByName(String userid);
-
     Optional<Member> findByUserid(String userid);
-
 }
