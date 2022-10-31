@@ -69,4 +69,5 @@ public class MemberController {
         memberService.logout(session);
         return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
     }
+
 }
