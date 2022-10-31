@@ -4,6 +4,10 @@ import com.backend.schemabackend.auth.MyMemberDetail;
 import com.backend.schemabackend.dto.InfoDto;
 import com.backend.schemabackend.entity.Member;
 import com.backend.schemabackend.repository.BoardRepository;
+<<<<<<< HEAD
+
+=======
+>>>>>>> 2ef1925c4aaae6c4f8606c166a43b6b05a985f14
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +31,28 @@ public class MemberService implements UserDetailsService {
     @Autowired
     private final BoardRepository boardRepository;
 
+<<<<<<< HEAD
+    public HashMap<String, Object> usernameOverlap(String userid) {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("result", boardRepository.existsByUserid(userid));
+        return map;
+    }
+
+    @Transactional
+    public Optional<Member> checkUseridDuplicate(Member member){
+	    return boardRepository.findByUserid(member.getUserid());
+    }
+
+    //닉네임 중복 검사
+    public HashMap<String, Object> nicknameOverlap(String password) {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("result", boardRepository.existsByPassword(password));
+        return map;
+    }
+=======
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+>>>>>>> 2ef1925c4aaae6c4f8606c166a43b6b05a985f14
 
     @Transactional
     public void SignUp(Member member){
