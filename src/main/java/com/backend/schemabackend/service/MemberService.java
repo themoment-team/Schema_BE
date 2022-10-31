@@ -66,4 +66,5 @@ public class MemberService implements UserDetailsService {
     public void logout(HttpSession session){
         session.invalidate();
     }
+
 }
