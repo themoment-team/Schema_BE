@@ -1,12 +1,7 @@
 package com.backend.schemabackend.controller;
 
-
-<<<<<<< HEAD
-
 import com.backend.schemabackend.auth.MyMemberDetail;
-=======
 import com.backend.schemabackend.dto.InfoDto;
->>>>>>> 2ef1925c4aaae6c4f8606c166a43b6b05a985f14
 import com.backend.schemabackend.dto.ResponseDto;
 import com.backend.schemabackend.entity.Member;
 import com.backend.schemabackend.repository.BoardRepository;
@@ -15,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -60,23 +56,6 @@ public class MemberController {
             return new ResponseDto<Integer>(HttpStatus.NOT_FOUND.value(),1);
     }
 
-<<<<<<< HEAD
-    @PostMapping("/overlap")
-    public ResponseDto<Boolean>UseridOverlap(@RequestBody Member member){
-	    Optional<Member> overlap = memberService.checkUseridDuplicate(member);
-	    System.out.println(overlap);
-	    if(overlap.equals(Optional.empty())){
-		    return new ResponseDto<Boolean>(HttpStatus.NOT_FOUND.value(), true);
-	    }
-	    else
-		    return new ResponseDto<Boolean>(HttpStatus.OK.value(), false);
-    }
-
-    @GetMapping("/")
-    public String main(@AuthenticationPrincipal MyMemberDetail principal){
-        System.out.println("로그인 사용자 아이디: " + principal.getUsername());
-        return "main";
-=======
     @PostMapping("/modify")
     public ResponseDto<Integer> modify(@RequestBody Member member, HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -85,7 +64,6 @@ public class MemberController {
         session.setAttribute("user", modifyMember);
 
         return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
->>>>>>> 2ef1925c4aaae6c4f8606c166a43b6b05a985f14
     }
 
     @PostMapping("/overlap")
