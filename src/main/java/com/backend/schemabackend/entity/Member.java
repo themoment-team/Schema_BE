@@ -1,11 +1,9 @@
 package com.backend.schemabackend.entity;
 
-import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Builder
@@ -34,18 +32,7 @@ public class Member{
 
     private String role;
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public Member() {
-    }
-    public Member(String userid, String password, String name, String school, String grade, String class1) {
-        this.userid = userid;
-        this.password = password;
-        this.name = name;
-        this.school = school;
-        this.grade = grade;
-        this.class1 = class1;
+
     }
 }

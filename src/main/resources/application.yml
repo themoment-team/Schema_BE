@@ -5,9 +5,6 @@ spring:
     username: schema_master
     password: schema123!
 
-  jwt:
-    secret: jwtsecretkey
-
   jpa:
     hibernate:
       #옵션 create, update, none, create-drop, validate 있음
@@ -15,6 +12,9 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+  session:
+    store-type: jdbc
 
 logging:
   level:
