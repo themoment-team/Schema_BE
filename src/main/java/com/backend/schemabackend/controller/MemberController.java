@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionContext;
 import java.security.Principal;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,14 +33,7 @@ import java.util.Optional;
 public class MemberController {
 
     @Autowired
-    private MemberService memberService;
-    @Autowired
-    private BoardRepository boardRep;
-
-    @Autowired
-    public MemberController(BoardRepository boardRep) {
-        this.boardRep = boardRep;
-    }
+    private final MemberService memberService;
 
     @PostMapping("/signupInfo")
     public ResponseDto<Integer> save(@RequestBody Member member){
@@ -72,7 +67,7 @@ public class MemberController {
     }
 
     @PostMapping("/overlap")
-    public ResponseDto<Boolean>UseridOverlap(@RequestBody Member member){
+    public ResponseDto<Boolean>useridOverlap(@RequestBody Member member){
         Optional<Member> overlap = memberService.checkUseridDuplicate(member);
         if(overlap.equals(Optional.empty()) ){
             return new ResponseDto<Boolean>(HttpStatus.OK.value(),true);
@@ -85,11 +80,6 @@ public class MemberController {
     public ResponseDto<Integer> logout(HttpSession session){
         memberService.logout(session);
         return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
-    }
-
-    @GetMapping("/memberInfo")
-    public List<InfoDto> Info(){
-        return memberService.info();
     }
 
 }
