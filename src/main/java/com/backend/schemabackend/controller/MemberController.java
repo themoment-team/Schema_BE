@@ -1,6 +1,7 @@
 package com.backend.schemabackend.controller;
 
 
+import com.backend.schemabackend.dto.InfoDto;
 import com.backend.schemabackend.dto.ResponseDto;
 import com.backend.schemabackend.entity.Member;
 import com.backend.schemabackend.repository.BoardRepository;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
