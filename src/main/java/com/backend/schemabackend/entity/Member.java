@@ -17,7 +17,7 @@ import javax.persistence.Id;
 @Data
 public class Member{
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String userid;

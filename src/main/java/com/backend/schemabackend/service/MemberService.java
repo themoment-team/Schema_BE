@@ -29,17 +29,15 @@ public class MemberService implements UserDetailsService {
     @Autowired
     private final BoardRepository boardRepository;
 
-    @Transactional
-    public void joinMember(Member member){
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        member.setPassword(passwordEncoder.encode(member.getPassword()));
-        repository.saveMember(member);
-    }
-
     public HashMap<String, Object> usernameOverlap(String userid) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("result", boardRepository.existsByUserid(userid));
         return map;
+    }
+
+    @Transactional
+    public Optional<Member> checkUseridDuplicate(Member member){
+	    return boardRepository.findByUserid(member.getUserid());
     }
 
     //닉네임 중복 검사

@@ -23,6 +23,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,6 +33,7 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
 
+@CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
 @Slf4j
@@ -64,6 +66,17 @@ public class MemberController {
         }
         else
             return new ResponseDto<Integer>(HttpStatus.NOT_FOUND.value(),1);
+    }
+
+    @PostMapping("/overlap")
+    public ResponseDto<Boolean>UseridOverlap(@RequestBody Member member){
+	    Optional<Member> overlap = memberService.checkUseridDuplicate(member);
+	    System.out.println(overlap);
+	    if(overlap.equals(Optional.empty())){
+		    return new ResponseDto<Boolean>(HttpStatus.NOT_FOUND.value(), true);
+	    }
+	    else
+		    return new ResponseDto<Boolean>(HttpStatus.OK.value(), false);
     }
 
     @GetMapping("/")

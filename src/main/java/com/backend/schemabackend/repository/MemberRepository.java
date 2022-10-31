@@ -1,5 +1,3 @@
-package com.backend.schemabackend.repository;
-
 import com.backend.schemabackend.entity.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
