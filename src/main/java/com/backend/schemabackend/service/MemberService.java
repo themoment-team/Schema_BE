@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -28,7 +29,6 @@ public class MemberService implements UserDetailsService {
     private final BoardRepository boardRepository;
 
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-
 
     @Transactional
     public void SignUp(Member member){

@@ -9,5 +9,4 @@ public class SchemaBackendApplication {
     public static void main(String[] args) {
         SpringApplication.run(SchemaBackendApplication.class, args);
     }
-
 }
