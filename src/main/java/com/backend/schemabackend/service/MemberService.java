@@ -72,4 +72,11 @@ public class MemberService implements UserDetailsService {
         session.invalidate();
     }
 
+    @Transactional
+    public List<InfoDto> info(){
+        Sort sort = Sort.by(Sort.Direction.DESC,"name", "school", "grade", "class1");
+        List<Member> list = boardRepository.findAll(sort);
+        return list.stream().map(InfoDto::new).collect(Collectors.toList());
+    }
+
 }

@@ -79,4 +79,9 @@ public class MemberController {
         return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
     }
 
+    @GetMapping("/memberInfo")
+    public List<InfoDto> Info(){
+        return memberService.info();
+    }
+
 }
