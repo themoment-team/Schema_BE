@@ -19,7 +19,7 @@ permissions:
 jobs:
   build:
 
-    runs-on: linux
+    runs-on: ubuntu-lastest
 
     steps:
     - uses: actions/checkout@v3
