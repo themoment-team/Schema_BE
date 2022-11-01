@@ -70,4 +70,9 @@ public class MemberController {
         return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
     }
 
+    @PostMapping("/memberInfo")
+    public Member memberInfo(Member member){
+        return memberService.findInfo(member);
+    }
+
 }
