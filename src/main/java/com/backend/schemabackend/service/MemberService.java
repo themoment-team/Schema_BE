@@ -66,4 +66,13 @@ public class MemberService implements UserDetailsService {
     public void logout(HttpSession session){
         session.invalidate();
     }
+
+    @Transactional
+    public Member findInfo(Member member){
+        Member info = boardRepository.findByUserid(member.getUserid()).orElseThrow(()->{
+            return new IllegalArgumentException("회원 찾기 실패");
+        });
+
+        return info;
+    }
 }
