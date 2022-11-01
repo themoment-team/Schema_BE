@@ -74,5 +74,4 @@ public class MemberController {
     public Member memberInfo(@RequestBody Member member){
         return memberService.findInfo(member);
     }
-
 }
