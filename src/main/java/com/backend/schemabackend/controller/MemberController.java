@@ -71,7 +71,7 @@ public class MemberController {
     }
 
     @PostMapping("/memberInfo")
-    public Member memberInfo(Member member){
+    public Member memberInfo(@RequestBody Member member){
         return memberService.findInfo(member);
     }
 
