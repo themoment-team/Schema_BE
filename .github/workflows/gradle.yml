@@ -51,4 +51,4 @@ jobs:
         run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://schema-cd/$GITHUB_SHA.zip
 
       - name: Code Deploy
-        run: aws deploy create-deployment --application-name Github-Actions-Deploy --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name github-actions-group --s3-location bucket=schema-cd,bundleType=zip,key=$GITHUB_SHA.zip
+        run: aws deploy create-deployment --application-name schema-CD --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name github-actions-group --s3-location bucket=schema-cd,bundleType=zip,key=$GITHUB_SHA.zip
