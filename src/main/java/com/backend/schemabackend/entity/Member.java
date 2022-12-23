@@ -32,8 +32,4 @@ public class Member{
     private String class1;
 
     private String role;
-
-    public Member() {
-
-    }
 }

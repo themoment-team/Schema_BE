@@ -57,7 +57,7 @@ public class MemberController {
     @PostMapping("/overlap")
     public ResponseDto<Boolean>useridOverlap(@RequestBody Member member){
         Optional<Member> overlap = memberService.checkUseridDuplicate(member);
-        if(overlap.equals(Optional.empty()) ){
+        if(overlap.isEmpty()){
             return new ResponseDto<Boolean>(HttpStatus.OK.value(),true);
         }
         else
